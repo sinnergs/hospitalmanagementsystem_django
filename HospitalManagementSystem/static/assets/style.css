@@ -1,0 +1,8 @@
+.bg-custom {
+    background: linear-gradient(to right, #3848A2, #007bff, #039BE6, #028BCF, #3F51B5);
+  }
+  
+  .bg-custom-1 {
+    background: linear-gradient(to right,  #007bff, #039BE6, #028BCF);
+  }
+  

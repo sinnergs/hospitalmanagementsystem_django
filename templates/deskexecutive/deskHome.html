@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/site.webmanifest">
+    <link rel="stylesheet" href="{%static 'assets\bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{%static 'assets\style.css'%}">
+    <title>Boostrap 4 Login Page.</title>
+  </head>
+  <body class="bg-custom text-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent border border-light border-top-0 border-left-0 border-right-0">
+      <a class="navbar-brand" href="{% url 'landingPage' %}"><img src="img/icon.png" width="30" height="30" class="d-inline-block" alt="">
+   ABC Hospital</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <a class="btn btn-primary" href="{% url 'pharmacist:pharmacistHome' %}" role="button" style="margin-left: 20px !important;">Pharmacist</a>
+      <a class="btn btn-primary" href="{% url 'diagnostic:diagnosticHome' %}" role="button" style="margin-left: 20px !important;">Diagnostic</a>
+      <a class="btn btn-primary " href="{% url 'staff:logoutStaff' %}" role="button" style="margin-left: 819px !important; ">Log-out</a>
+
+
+    </nav>
+
+
+
+    <div class="container.fluid">
+        <p class="h1 " style=" margin: 25px !important;">Registration/Addmission Desk Executive pannel of operations</p>
+
+        <ol>
+            <li style=" margin: 20px !important;">
+                <a href="{% url 'deskexecutive:addPatient' %}"><button type="button" class="btn btn-primary">Create /  Admit a new patient</button></a>
+            </li>
+
+            <li style=" margin: 20px !important;">
+                <a href="{% url 'deskexecutive:updatePatient' %}"><button type="button" class="btn btn-primary">Update / edit patient details</button></a>
+            </li>
+
+            <li style=" margin: 20px !important;">
+                <a href="{% url 'deskexecutive:deletePatient' %}"><button type="button" class="btn btn-primary">Delete patient </button></a>
+            </li>
+
+            <li style=" margin: 20px !important;">
+                <a href="{% url 'deskexecutive:showAllPatient' %}"><button type="button" class="btn btn-primary">View all current patients records</button></a>
+            </li>
+
+            <li style=" margin: 20px !important;">
+                <a href="{% url 'deskexecutive:searchPatient' %}"><button type="button" class="btn btn-primary">Search a patient </button></a>
+            </li>
+
+            <li style=" margin: 20px !important;">
+                <a href="{% url 'deskexecutive:billing' %}"><button type="button" class="btn btn-primary">Billing and Discharge  </button></a>
+            </li>
+        </ol>
+
+       
+
+    </div>
+
+
+
+
+
+    
+    <nav class="navbar navbar-dark bg-custom border fixed-bottom border-light border-bottom-0 border-left-0 border-right-0">
+      HMS  <a class="navbar-brand" href="#">text</a>
+    </nav>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="{%static 'assets\bootstrap.min.js'%}"></script>
+  </body>
+</html>

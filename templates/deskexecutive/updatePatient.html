@@ -1,0 +1,227 @@
+
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{%static 'assets\bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{%static 'assets\style.css'%}">
+    <title>Upadte User</title>
+  </head>
+  <body class="bg-custom">
+     <!--navbar-->
+
+     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent border border-light border-top-0 border-left-0 border-right-0">
+      <a class="navbar-brand" href="{% url 'landingPage' %}"><img src="img/icon.png" width="30" height="30" class="d-inline-block" alt="">
+   ABC Hospital</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+    </nav>
+
+    <!--navbar ends-->
+
+
+
+
+    <div class="container bg-light bg-custom-1" style="height: 90vh; width: 60%; margin-top: 10vh; padding: 2%; text-align: center;"  >
+      <h3>Update Patient Data</h3><hr>
+      <span style="font-size: 125%;">Enter Patient Id :</span>&nbsp;&nbsp;<input type="text" name="" id="textfield" >&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="Searchify()">Search</button><br><br>
+
+<form id="myform" method="POST" action="{% url 'deskexecutive:updatePatient' %}" style="visibility: hidden;">
+  {% csrf_token %}
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputName" placeholder="MY name"  name="name">
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <label for="Age" class="col-sm-2 col-form-label">Age</label>
+    <div class="col-sm-6">
+      <input type="number" class="form-control" id="Age"   placeholder="32"  name="age">
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <label for="City" class="col-sm-2 col-form-label">City</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="City"   placeholder="MY City"  name="city" >
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <label for="State" class="col-sm-2 col-form-label">State</label>
+    <div class="col-sm-10">
+      <select id="inputState" class="form-control"  name="state" >
+        <option selected>Select One..</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Lakshadweep">Lakshadweep</option>
+                    <option value="Puducherry">Puducherry</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+      </select>
+
+    </div>
+  </div>
+
+
+
+  <div class="form-group row">
+    <label for="Address" class="col-sm-2 col-form-label">Address</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="Address"   placeholder=" My Address" name="adrs">
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+    <div class="form-group row">
+    <label for="Type" class="col-sm-2 col-form-label">Room Type</label>
+    <div class="col-sm-10">
+      
+          <select id="Type1" class="form-control"  name ="roomtype">
+        <option selected>General Ward</option>
+        <option>Semi-Sharing</option>
+        <option>Single Room</option>
+      </select>
+
+
+    </div>
+  </div>
+
+   <div class="form-group row">
+    <label for="Status" class="col-sm-2 col-form-label">Status</label>
+    <div class="col-sm-10">
+       <input type="text" class="form-control" id="Status" value="MY Status" readonly>
+
+    </div>
+  </div>
+
+  
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-success" >Update Data</button>
+    </div>
+  </div>
+
+
+<input type="text" id="tempdel" name="uid" style="visibility: hidden; height: 0px;">
+
+
+
+
+</form>
+
+    </div>
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+    <script type="text/javascript">
+      function Searchify(){
+        var uid=document.getElementById('textfield').value
+          $.ajax({
+         type: "POST",
+
+         cache: false,
+         url: "fetchData/",
+         datatype: "html",
+         data :{uid : uid,},
+        
+         success: function(result) {
+          var data=JSON.parse(result)
+         var name=(data['patientName']);
+         var age=(data['patientAge']);
+         var city=(data['patientCity']);
+         var state =(data['patientState']);
+         var address=(data['patientAdrs']);
+         var rtype=(data['patientRtype']);
+         var pid=(data['patientId']);
+         var status =(data['patientStatus']);
+
+
+         document.getElementById('inputName').value=name;
+          document.getElementById('Age').value=age;
+           document.getElementById('City').value=city;
+            document.getElementById('inputState').value=state;
+             document.getElementById('Address').value=address;
+              document.getElementById('Type1').value=rtype;
+                document.getElementById('Status').value=status;
+
+
+              document.getElementById('tempdel').value=pid;
+
+         $('#myform').css('visibility','visible');
+
+
+
+                   }
+
+     });
+
+      }
+
+
+
+    
+    </script>
+  </body>
+</html>

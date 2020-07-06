@@ -1,0 +1,70 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{%static 'assets\bootstrap.min.css'%}">
+        <link rel="stylesheet" href="{%static 'assets\style.css'%}">
+    
+        <title>Issue Medicine</title>
+        <style type="text/css">
+          body{overflow: hidden;}
+        </style>
+      </head>
+      <body class="bg-custom">
+       <!--navbar-->
+    
+    
+       <nav class="navbar navbar-expand-lg navbar-dark bg-transparent border border-light border-top-0 border-left-0 border-right-0">
+        <a class="navbar-brand" href="{% url 'landingPage' %}"><img src="img/icon.png" width="30" height="30" class="d-inline-block" alt="">
+     ABC Hospital</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+    
+    
+        <!--navbar ends-->
+
+
+
+
+
+
+
+        <div class="container-fluid bg-light bg-custom-1" style="width: 100%; padding-bottom: 10%; height: 100vh; overflow: auto; text-align: center; overflow: auto;">
+          
+          <br>
+          <br>
+
+
+
+
+
+
+
+
+
+            <form action="{% url 'diagnostic:testdiagnose' %}" method="POST">
+                {% csrf_token %}
+                patient ID : <input type="text" name="pid">
+                Test : <input type="text" name="testid">
+                <button name="submit">Add Test</button>
+                <div>
+                    {%for msg in messages %}
+                    <h3>{{ msg }}</h3>
+                    {% endfor %}
+                </div>
+
+            </form>
+
+
+
+
+
+        </body>
+        </html>

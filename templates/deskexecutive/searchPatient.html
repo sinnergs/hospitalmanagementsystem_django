@@ -1,0 +1,194 @@
+
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{%static 'assets\bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{%static 'assets\style.css'%}">
+    <title>Delete User</title>
+  </head>
+  <body class="bg-custom">
+     <!--navbar-->
+
+     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent border border-light border-top-0 border-left-0 border-right-0">
+      <a class="navbar-brand" href="{% url 'landingPage' %}"><img src="img/icon.png" width="30" height="30" class="d-inline-block" alt="">
+   ABC Hospital</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+    </nav>
+    <!--navbar ends-->
+
+
+
+
+    <div class="container bg-light bg-custom-1" style="height: 70vh; width: 60%; margin-top: 10vh; padding: 2%; text-align: center;"  >
+      <h3>Search Patient</h3><hr>
+      <span style="font-size: 125%;">Enter Patient Id :</span>&nbsp;&nbsp;<input type="text" name="" id="textfield" >&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="Searchify()">Search</button><br><br>
+      <h3 id="error" style="visibility: hidden;">Patient Doesn't Exists</h3>
+<form id="myform" method="POST" action="{% url 'deskexecutive:deletePatient' %}" style="visibility: hidden;">
+  {% csrf_token %}
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputName" value="MY name" readonly>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <label for="Age" class="col-sm-2 col-form-label">Age</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="Age"   value="32" readonly>
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <label for="City" class="col-sm-2 col-form-label">City</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="City"   value="MY City" readonly>
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <label for="State" class="col-sm-2 col-form-label">State</label>
+    <div class="col-sm-10">
+       <input type="text" class="form-control" id="State" value="MY State" readonly>
+    </div>
+  </div>
+
+
+
+  <div class="form-group row">
+    <label for="Address" class="col-sm-2 col-form-label">Address</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="Address"   value=" My Address" readonly>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+    <div class="form-group row">
+    <label for="Type" class="col-sm-2 col-form-label">Room Type</label>
+    <div class="col-sm-10">
+       <input type="text" class="form-control" id="Type" value="MY Room" readonly>
+
+    </div>
+  </div>
+
+   <div class="form-group row">
+    <label for="Status" class="col-sm-2 col-form-label">Status</label>
+    <div class="col-sm-10">
+       <input type="text" class="form-control" id="Status" value="MY Status" readonly>
+
+    </div>
+  </div>
+
+  
+ 
+
+
+<input type="text" id="tempdel" niame="uid" style="visibility: hidden; height: 0px;">
+
+
+<input type="submit" name="" id="submitbtn"  style="visibility: hidden; height: 0px;">
+
+
+</form>
+
+    </div>
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+    <script type="text/javascript">
+      function Searchify(){
+        var uid=document.getElementById('textfield').value
+          $.ajax({
+         type: "POST",
+
+         cache: false,
+         url: "",
+         datatype: "html",
+         data :{uid : uid,},
+        
+         success: function(result) {
+          var data=JSON.parse(result)
+          if (data['exists']=="no"){
+            document.getElementById('error').value="Patient Does Not Exists";
+            $('#error').css('visibility','visible');
+            $('#myform').css('visibility','hidden');
+          }
+          else{
+         var name=(data['patientName']);
+         var age=(data['patientAge']);
+         var city=(data['patientCity']);
+         var state =(data['patientState']);
+         var address=(data['patientAdrs']);
+         var rtype=(data['patientRtype']);
+         var pid=(data['patientId']);
+         var status =(data['patientStatus']);
+       
+         document.getElementById('inputName').value=name;
+          document.getElementById('Age').value=age;
+           document.getElementById('City').value=city;
+            document.getElementById('State').value=state;
+             document.getElementById('Address').value=address;
+              document.getElementById('Type').value=rtype;
+                document.getElementById('Status').value=status;
+                $('#myform').css('visibility','visible');
+                $('#error').css('visibility','hidden');
+              }
+              document.getElementById('tempdel').value=pid;
+
+         
+
+
+
+                   }
+
+     });
+
+      }
+
+
+
+
+      function deleteuser(){
+        var x= document.getElementById('tempdel').value;
+        if(x=='##'){alert("invalid option")}
+          else{$('#submitbtn').click();
+            document.getElementById('tempdel').value="##";
+          }
+      }
+    </script>
+  </body>
+</html>
